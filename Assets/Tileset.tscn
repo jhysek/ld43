@@ -5,13 +5,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 60, 60 )
+extents = Vector2( 64, 64 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
 
 closed = true
 cull_mode = 0
-polygon = PoolVector2Array( -60, 60, 60, 60, 60, -60, -60, -60 )
+polygon = PoolVector2Array( -64, 64, 64, 64, 64, -64, -64, -64 )
 
 [node name="Tileset" type="Node2D" index="0"]
 

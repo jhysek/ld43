@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/circle.png" type="Texture" id=8]
 [ext_resource path="res://Assets/particle.png" type="Texture" id=9]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 
 resource_name = "Die"
 length = 1.0
@@ -41,7 +41,7 @@ tracks/1/keys = {
 "values": [ 0.0, -90.1239 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite/Visual/Head:position")
+tracks/2/path = NodePath("Sprite/Visual/Head:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -50,10 +50,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -9.92755, -73.1025 ), Vector2( 16.0958, -79.5487 ) ]
+"values": [ 0.0, 0.672405 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite/Visual/Head:rotation_degrees")
+tracks/3/path = NodePath("Sprite/Visual/Head:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -62,7 +62,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.672405 ]
+"values": [ Vector2( -9.92755, -73.1025 ), Vector2( 16.0958, -79.5487 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprite/Visual/Body/ArmLeft:position")
@@ -197,7 +197,7 @@ tracks/14/keys = {
 "values": [ 0.0, -81.9341 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 resource_name = "Idle"
 length = 2.0
@@ -336,14 +336,14 @@ tracks/10/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 resource_name = "Jump"
 length = 2.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Visual/Head:position")
+tracks/0/path = NodePath("Sprite/Visual/Head:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -352,10 +352,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -9.92755, -73.1025 ) ]
+"values": [ 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Visual/Head:rotation_degrees")
+tracks/1/path = NodePath("Sprite/Visual/Head:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -364,7 +364,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ Vector2( -9.92755, -73.1025 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite/Visual/Body/ArmLeft:position")
@@ -487,7 +487,7 @@ tracks/11/keys = {
 "values": [ 3.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 
 resource_name = "StartPosessing"
 length = 1.0
@@ -530,7 +530,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.02, 0.02 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 
 resource_name = "StopPosessing"
 length = 1.0
@@ -573,7 +573,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=6]
 
 resource_name = "WalkLeft"
 length = 1.3
@@ -1004,7 +1004,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Corner Radius" ]
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticlesMaterial" id=12]
 
 resource_local_to_scene = true
 render_priority = 0
@@ -1045,7 +1045,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Angular Velocity", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Resource", "Scale", "Spread", "Trail" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Bird" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 33
@@ -1138,12 +1138,12 @@ autoplay = "Idle"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.5
-anims/Die = SubResource( 2 )
-anims/Idle = SubResource( 3 )
-anims/Jump = SubResource( 4 )
-anims/StartPosessing = SubResource( 5 )
-anims/StopPosessing = SubResource( 6 )
-anims/WalkLeft = SubResource( 12 )
+anims/Die = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Jump = SubResource( 3 )
+anims/StartPosessing = SubResource( 4 )
+anims/StopPosessing = SubResource( 5 )
+anims/WalkLeft = SubResource( 6 )
 anims/WalkRight = SubResource( 7 )
 next/Jump = "Idle"
 blend_times = [ "Jump", "Jump", 2.0 ]
@@ -1151,6 +1151,7 @@ _sections_unfolded = [ "Playback Options" ]
 
 [node name="PosessArea" type="Area2D" parent="." index="3"]
 
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -1227,7 +1228,7 @@ collision_mask = 1
 
 [node name="Sfx" type="Node" parent="." index="7"]
 
-[node name="Jump" type="AudioStreamPlayer" parent="Sfx" index="0"]
+[node name="Die" type="AudioStreamPlayer" parent="Sfx" index="0"]
 
 stream = null
 volume_db = 0.0
@@ -1235,15 +1236,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Die" type="AudioStreamPlayer" parent="Sfx" index="1"]
-
-stream = null
-volume_db = 0.0
-autoplay = false
-mix_target = 0
-bus = "Master"
-
-[node name="Posessing" type="AudioStreamPlayer" parent="Sfx" index="2"]
+[node name="Posessing" type="AudioStreamPlayer" parent="Sfx" index="1"]
 
 stream = null
 volume_db = 0.0
@@ -1267,7 +1260,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 13 )
+process_material = SubResource( 12 )
 texture = ExtResource( 9 )
 normal_map = null
 h_frames = 1

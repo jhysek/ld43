@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-06023f60f54ec986b75003a8d422612f.stex"
+path="res://.import/spikes.png-78fb6c5b7c62c5e94301b5874d7a443e.stex"
 
 [deps]
 
-source_file="res://Assets/tileset.png"
-source_md5="5113e3444d13324300ef6e62c978e0c8"
+source_file="res://Assets/spikes.png"
+source_md5="dcf8ae3da7b50a58b73b102b94a4026e"
 
-dest_files=[ "res://.import/tileset.png-06023f60f54ec986b75003a8d422612f.stex" ]
-dest_md5="2a39485680dd3a4acf023455079a9074"
+dest_files=[ "res://.import/spikes.png-78fb6c5b7c62c5e94301b5874d7a443e.stex" ]
+dest_md5="cee111d7b8b81298452305e0fd4ae117"
 
 [params]
 

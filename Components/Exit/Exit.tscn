@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Components/Exit/Exit.gd" type="Script" id=1]
+[ext_resource path="res://Assets/exit.png" type="Texture" id=2]
+[ext_resource path="res://Assets/light.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -9,7 +11,6 @@ extents = Vector2( 28.2164, 44.3639 )
 
 [node name="Exit" type="Area2D"]
 
-position = Vector2( 721.652, 272.045 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -19,12 +20,43 @@ monitorable = false
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
+
+position = Vector2( -0.693965, -1.46476 )
+scale = Vector2( 0.13557, 0.146983 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Light2D" type="Light2D" parent="." index="2"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 3 )
+offset = Vector2( 0, 0 )
+texture_scale = 2.0
+color = Color( 0.292969, 0.768005, 1, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Shadow" ]
 
 [connection signal="body_entered" from="." to="." method="_on_Exit_body_entered"]
 

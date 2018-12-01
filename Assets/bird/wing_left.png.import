@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-06023f60f54ec986b75003a8d422612f.stex"
+path="res://.import/wing_left.png-6d52c1b7a96ac72e7b3939f0a9937c4a.stex"
 
 [deps]
 
-source_file="res://Assets/tileset.png"
-source_md5="5113e3444d13324300ef6e62c978e0c8"
+source_file="res://Assets/bird/wing_left.png"
+source_md5="a2c45ef010991f3111fd2b91250525f5"
 
-dest_files=[ "res://.import/tileset.png-06023f60f54ec986b75003a8d422612f.stex" ]
-dest_md5="2a39485680dd3a4acf023455079a9074"
+dest_files=[ "res://.import/wing_left.png-6d52c1b7a96ac72e7b3939f0a9937c4a.stex" ]
+dest_md5="89f42012a5f9aa91c153d5ea6598671e"
 
 [params]
 
