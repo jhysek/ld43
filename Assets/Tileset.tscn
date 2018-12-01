@@ -13,7 +13,7 @@ closed = true
 cull_mode = 0
 polygon = PoolVector2Array( -60, 60, 60, 60, 60, -60, -60, -60 )
 
-[node name="Tileset" type="Node2D"]
+[node name="Tileset" type="Node2D" index="0"]
 
 [node name="Tile01" type="Sprite" parent="." index="0"]
 
