@@ -47,26 +47,28 @@ func controlled_process(delta):
 	
 	if !posessing:
 		if not in_air and Input.is_action_pressed("ui_up"):
-			print("NOT IN AIR")
-			print(ray_left.get_collider())
-			
-			print(ray_right.get_collider())
-			#anim.play("Jump")
+			in_air = true
+			anim.play("Jump")
 			#$Sfx/Jump.stop()
 			#$Sfx/Jump.play()
 			motion.y = JUMP_SPEED
 	
 		if Input.is_action_pressed('ui_right'):
-#			if not in_air and anim.current_animation != "Run":
-#             anim.play("Run")
+			if not in_air and anim.current_animation != "WalkRight":
+             anim.play("WalkRight")
 			motion.x = min(motion.x + SPEED * delta, SPEED * delta)
 			sprite.scale.x = 1
 		
 		if Input.is_action_pressed('ui_left'):
+			if not in_air and anim.current_animation != "WalkLeft":
+				anim.play("WalkLeft")
 			motion.x = max(motion.x - SPEED * delta, -SPEED * delta)
 			sprite.scale.x = -1
 			
 		elif !Input.is_action_pressed('ui_right'):
+			if !in_air and anim.current_animation != "Idle":
+				anim.play("Idle")
+				
 			motion.x = 0
 	
 		if Input.is_action_pressed('ui_accept'):
