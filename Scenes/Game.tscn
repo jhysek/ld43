@@ -1,18 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Components/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/light.png" type="Texture" id=4]
+[ext_resource path="res://Components/Exit/Exit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/loop.ogg" type="AudioStream" id=6]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
+scale = Vector2( 0.5, 0.5 )
 mode = 0
 tile_set = ExtResource( 2 )
-cell_size = Vector2( 64, 64 )
+cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 cell_half_offset = 2
@@ -26,10 +30,13 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 65540, 0, 0, 131076, 0, 0, 196615, 0, 0, 196616, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0 )
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 0, 0, 65541, 1, 0, 65542, 5, 0, 65543, 4, 0, 65544, 5, 0, 65545, 4, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 0, 0, 131077, 1, 0, 131078, 4, 0, 131079, 5, 0, 131080, 3, 0, 131081, 5, 0, 262143, 1, 0, 196608, 1, 0, 196609, 2, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 5, 0, 196615, 0, 0, 196616, 0, 0, 196617, 4, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 3, 0, 262151, 5, 0, 262152, 4, 0, 262154, 4, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0 )
+_sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
+_sections_unfolded = [ "Collision", "Visibility" ]
+JUMP_SPEED = -850
 controlled = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="5"]
@@ -58,12 +65,62 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Smoothing" ]
 
+[node name="Light2D" type="Light2D" parent="Player/Camera2D" index="0"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 4 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Shadow" ]
+
 [node name="Enemy" parent="." index="2" groups=[
 "Posessable",
 ] instance=ExtResource( 3 )]
 
-modulate = Color( 0.988281, 0.123535, 0.123535, 1 )
 position = Vector2( 484.631, 131.95 )
 _sections_unfolded = [ "Collision", "Material", "Visibility" ]
+JUMP_SPEED = -850
+
+[node name="Bullet" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet" index="0"]
+
+[node name="Exit" parent="." index="4" instance=ExtResource( 5 )]
+
+[node name="Checkpoints" type="Node2D" parent="." index="5"]
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="6"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+_sections_unfolded = [ "Pause" ]
 
 

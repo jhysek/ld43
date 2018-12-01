@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var GRAVITY = 40 * 60
 export var SPEED   = 30000
-export var JUMP_SPEED  = -950
+export var JUMP_SPEED  = -850
 export var WALL_GRAVITY_THROTLING = 0.05
 export var controlled = false
 export var can_fly = false
@@ -21,6 +21,7 @@ var motion = Vector2(0,0)
 var posessing = false
 var posess_timeout = 1
 var posessable_enemy
+var after_posession_timeout = 0
 
 func _ready():
 	set_physics_process(true)
@@ -46,6 +47,10 @@ func controlled_process(delta):
 	
 	if !posessing:
 		if not in_air and Input.is_action_pressed("ui_up"):
+			print("NOT IN AIR")
+			print(ray_left.get_collider())
+			
+			print(ray_right.get_collider())
 			#anim.play("Jump")
 			#$Sfx/Jump.stop()
 			#$Sfx/Jump.play()
@@ -55,12 +60,12 @@ func controlled_process(delta):
 #			if not in_air and anim.current_animation != "Run":
 #             anim.play("Run")
 			motion.x = min(motion.x + SPEED * delta, SPEED * delta)
-			sprite.flip_h = false
+			sprite.scale.x = 1
 		
 		if Input.is_action_pressed('ui_left'):
 			motion.x = max(motion.x - SPEED * delta, -SPEED * delta)
-			sprite.flip_h = true
-		
+			sprite.scale.x = -1
+			
 		elif !Input.is_action_pressed('ui_right'):
 			motion.x = 0
 	
@@ -80,6 +85,10 @@ func _physics_process(delta):
 	motion.y += GRAVITY * delta
 	
 	if controlled:
+		if after_posession_timeout > 0:
+			after_posession_timeout -= delta
+			return
+			
 		controlled_process(delta)
 		
 		if posessing and posess_timeout >= 0:
@@ -100,6 +109,7 @@ func posess_enemy():
 		remove_child(cam)
 		posessable_enemy.add_child(cam)
 		posessable_enemy.remove_from_group("Posessable")
+		posessable_enemy.after_posession_timeout = 0.5
 		add_to_group("Posessable")
 		stop_posessing()
 		cam.position = Vector2(0,0)

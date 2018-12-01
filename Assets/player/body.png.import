@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-2a7c25d2528b528b4775521a146eeb11.stex"
+path="res://.import/body.png-07a4f99d70d84eabcda40216f0f523c4.stex"
 
 [deps]
 
-source_file="res://Assets/light.png"
-source_md5="52bef78df4826f8c3858309d439a0242"
+source_file="res://Assets/player/body.png"
+source_md5="e2b52a992553d4a6951d145b9d4b3b77"
 
-dest_files=[ "res://.import/light.png-2a7c25d2528b528b4775521a146eeb11.stex" ]
-dest_md5="bc009fab4d9572cfe661c21993eee4ee"
+dest_files=[ "res://.import/body.png-07a4f99d70d84eabcda40216f0f523c4.stex" ]
+dest_md5="f88a8b81db837ee67ba27bbc3feeffd1"
 
 [params]
 
