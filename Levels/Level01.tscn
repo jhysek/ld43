@@ -158,6 +158,8 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 [node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
 position = Vector2( -934.965, 130.142 )
+FLY_FORCE = -800
+FLY_SPEED = 10000
 controlled = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="5"]
@@ -227,6 +229,8 @@ playback/speed = 1.0
 
 position = Vector2( 1524.15, -241.076 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
+FLY_FORCE = -800
+FLY_SPEED = 10000
 
 [node name="Checkpoints" type="Node2D" parent="." index="6"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=7]
 [ext_resource path="res://Assets/light.png" type="Texture" id=8]
 [ext_resource path="res://Assets/loop.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Components/Player/Bird.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Environment" id=1]
 
@@ -89,7 +90,7 @@ adjustment_contrast = 1.1
 adjustment_saturation = 0.8
 _sections_unfolded = [ "Adjustments", "Background", "Glow" ]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -122,11 +123,7 @@ position = Vector2( 1730.66, 289.127 )
 
 position = Vector2( -458.872, 326.036 )
 
-[node name="Saw2" parent="." index="3" instance=ExtResource( 4 )]
-
-position = Vector2( -458.872, 326.036 )
-
-[node name="TileMap" type="TileMap" parent="." index="4"]
+[node name="TileMap" type="TileMap" parent="." index="3"]
 
 position = Vector2( 0, 1 )
 scale = Vector2( 0.5, 0.5 )
@@ -149,12 +146,11 @@ format = 1
 tile_data = PoolIntArray( -131082, 0, 0, -65546, 0, 0, -65540, 0, 0, -10, 0, 0, 65526, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 131062, 0, 0, 131065, 0, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 0, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65559, 0, 0, 65560, 0, 0, 65561, 0, 0, 65562, 0, 0, 65563, 0, 0, 65564, 0, 0, 65565, 0, 0, 65566, 0, 0, 196598, 0, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 0, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131095, 0, 0, 131102, 0, 0, 262134, 0, 0, 262139, 0, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 0, 0, 196616, 0, 0, 196617, 1, 0, 196618, 1, 0, 196631, 0, 0, 196638, 0, 0, 327670, 0, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262174, 0, 0, 393206, 0, 0, 393207, 0, 0, 393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 0, 0, 458742, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 393241, 0, 0, 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 524278, 0, 0, 524279, 0, 0, 524280, 0, 0, 524281, 0, 0, 524282, 0, 0, 524283, 0, 0, 524284, 0, 0, 524285, 0, 0, 524286, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 458768, 0, 0, 458769, 0, 0, 458770, 0, 0, 458771, 0, 0, 458772, 0, 0, 458773, 0, 0, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458777, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 458781, 0, 0, 589814, 0, 0, 589815, 0, 0, 589816, 0, 0, 589817, 0, 0, 589818, 0, 0, 589819, 0, 0, 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 655350, 0, 0, 655351, 0, 0, 655352, 0, 0, 655353, 0, 0, 655354, 0, 0, 655355, 0, 0, 655356, 0, 0, 655357, 0, 0, 655358, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0 )
 _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 
-[node name="Player" parent="." index="5" instance=ExtResource( 6 )]
+[node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
-editor/display_folded = true
 controlled = true
 
-[node name="Camera2D" type="Camera2D" parent="Player" index="5"]
+[node name="Camera2D" type="Camera2D" parent="Player" index="9"]
 
 anchor_mode = 1
 rotating = false
@@ -215,16 +211,16 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Enemy" parent="." index="6" groups=[
+[node name="Enemy" parent="." index="5" groups=[
 "Posessable",
 ] instance=ExtResource( 6 )]
 
 position = Vector2( 484.631, 131.95 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
 
-[node name="Checkpoints" type="Node2D" parent="." index="7"]
+[node name="Checkpoints" type="Node2D" parent="." index="6"]
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="8"]
+[node name="Music" type="AudioStreamPlayer" parent="." index="7"]
 
 stream = ExtResource( 9 )
 volume_db = 0.0
@@ -233,9 +229,29 @@ mix_target = 0
 bus = "Master"
 _sections_unfolded = [ "Pause" ]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="8"]
 
 environment = SubResource( 1 )
+
+[node name="Bird" parent="." index="9" groups=[
+"Posessable",
+] instance=ExtResource( 10 )]
+
+position = Vector2( 265.071, -106.168 )
+FLY_SPEED = 10000
+can_fly = true
+
+[node name="Patrolling" type="Node2D" parent="Bird" index="9"]
+
+position = Vector2( -265.071, 106.168 )
+
+[node name="Position2D" type="Position2D" parent="Bird/Patrolling" index="0"]
+
+position = Vector2( -287.682, 44.5222 )
+
+[node name="Position2D2" type="Position2D" parent="Bird/Patrolling" index="1"]
+
+position = Vector2( 171.239, 54.7965 )
 
 [connection signal="tween_completed" from="Player/Camera2D/Tween" to="Player/Camera2D" method="_on_Tween_tween_completed"]
 
