@@ -32,6 +32,7 @@ var patrol_route = []
 var next_patrol_point_idx = 0
 var target 
 var patrol_movement = Vector2(0,0)
+var was_in_air = false
 
 func _ready():
 	add_to_group("Killable")
@@ -117,12 +118,14 @@ func controlled_flying_process(delta):
 	
 func controlled_process(delta):
 	var in_air = !ray_left.is_colliding() and !ray_right.is_colliding()
+	if was_in_air and !in_air:
+		$Sfx/Jump.play()
+	was_in_air = in_air
 	
 	if !posessing:
 		if not in_air and Input.is_action_pressed("ui_up"):
 			in_air = true
 			anim.play("Jump")
-			#$Sfx/Jump.stop()
 			#$Sfx/Jump.play()
 			motion.y = JUMP_SPEED
 	
@@ -190,6 +193,7 @@ func _physics_process(delta):
 func die():
 	dead = true	
 	remove_from_group("Posessable")
+	$Sfx/Die.play()
 	$PosessArea.hide()
 	anim.play("Die")
 	$Blood.emitting = true

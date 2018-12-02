@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/collectible.wav-0ecb5f4cd9b6a5ff546c6272a1f8ff78.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/collectible.wav"
+source_md5="3ed17e7f15ac4740bbe8013cb06bffa8"
+
+dest_files=[ "res://.import/collectible.wav-0ecb5f4cd9b6a5ff546c6272a1f8ff78.sample" ]
+dest_md5="32b05615eaf8e89061b97778d7faea8e"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

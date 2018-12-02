@@ -17,6 +17,12 @@ config/icon="res://icon.png"
 [autoload]
 
 LevelControler="*res://Scripts/LevelControler.gd"
+Jukebox="*res://Scenes/Jukebox.tscn"
+
+[display]
+
+window/size/width=1200
+window/size/height=800
 
 [input]
 

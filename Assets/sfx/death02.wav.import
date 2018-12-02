@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death02.wav-8330246c1788cd3a82a1fd131a55ccf0.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/death02.wav"
+source_md5="b3341d82dcc0c078696320fa85b2ea52"
+
+dest_files=[ "res://.import/death02.wav-8330246c1788cd3a82a1fd131a55ccf0.sample" ]
+dest_md5="ce29ca098f9e1cf4c8bd72d5db08d38d"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

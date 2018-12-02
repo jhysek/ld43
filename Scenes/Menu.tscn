@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Assets/light.png" type="Texture" id=7]
 [ext_resource path="res://Components/Player/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Components/Player/Bird.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/menu_loop.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Assets/sfx/click.wav" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -97,7 +99,7 @@ adjustment_contrast = 1.2
 adjustment_saturation = 0.8
 _sections_unfolded = [ "Adjustments", "Background", "Glow" ]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=3]
 
 size = 18
 use_mipmaps = true
@@ -105,7 +107,7 @@ use_filter = true
 font_data = ExtResource( 5 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -133,7 +135,7 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=5]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -161,7 +163,7 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 
 size = 30
 use_mipmaps = true
@@ -169,9 +171,12 @@ use_filter = true
 font_data = ExtResource( 5 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 1280.83 ]
+}
 
 [node name="TextureRect" type="TextureRect" parent="." index="0"]
 
@@ -365,11 +370,11 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.136719, 0.136719, 0.136719, 1 )
 text = "Ludum  Dare  43  Compo  entry
 made   in   48   hours   from   scratch   by   
-Jiri Hysek"
+Jiri   Hysek"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
@@ -384,7 +389,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 959.0
 margin_top = 808.0
-margin_right = 1271.0
+margin_right = 1281.0
 margin_bottom = 866.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -393,9 +398,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/hover = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -404,6 +409,24 @@ text = "START GAME"
 flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts", "custom_styles" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[node name="Click" type="AudioStreamPlayer" parent="." index="12"]
+
+stream = ExtResource( 11 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/click02.wav-43f5e9a972bdc71de50997e022c4a7f3.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/click02.wav"
+source_md5="7f90d122a93ca0deb9cfb143726e2a1f"
+
+dest_files=[ "res://.import/click02.wav-43f5e9a972bdc71de50997e022c4a7f3.sample" ]
+dest_md5="48d530eb9b29de96fc9272c087ab2c50"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

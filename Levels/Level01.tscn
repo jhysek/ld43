@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=2]
@@ -8,17 +8,16 @@
 [ext_resource path="res://Components/Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=7]
 [ext_resource path="res://Assets/light.png" type="Texture" id=8]
-[ext_resource path="res://Assets/loop.ogg" type="AudioStream" id=9]
-[ext_resource path="res://Scenes/WorldEnvironment.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=11]
-[ext_resource path="res://Components/BlinkingLabel/Label.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/WorldEnvironment.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://Components/BlinkingLabel/Label.gd" type="Script" id=11]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 
 size = 30
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 11 )
+font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Game" type="Node2D"]
@@ -152,18 +151,9 @@ _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z In
 
 [node name="Checkpoints" type="Node2D" parent="." index="6"]
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="7"]
+[node name="WorldEnvironment" parent="." index="7" instance=ExtResource( 9 )]
 
-stream = ExtResource( 9 )
-volume_db = 0.0
-autoplay = true
-mix_target = 0
-bus = "Master"
-_sections_unfolded = [ "Pause" ]
-
-[node name="WorldEnvironment" parent="." index="8" instance=ExtResource( 10 )]
-
-[node name="Label" type="Label" parent="." index="9"]
+[node name="Label" type="Label" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -179,13 +169,38 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.460938, 1, 0.962097, 1 )
 text = "hold  'DOWN'  to  possess  a  body  in  reach"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 12 )
+script = ExtResource( 11 )
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Label2" type="Label" parent="." index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -1089.0
+margin_top = -42.0
+margin_right = -575.0
+margin_bottom = 43.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.460938, 1, 0.962097, 1 )
+text = "Welcome  traveller"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 11 )
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [connection signal="tween_completed" from="Player/Camera2D/Tween" to="Player/Camera2D" method="_on_Tween_tween_completed"]
