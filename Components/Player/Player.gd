@@ -19,6 +19,7 @@ onready var sprite = $Sprite
 onready var game = get_node("/root/Game")
 onready var progress = $ProgressBar
 
+
 var patrolling = false
 var dead = false
 var motion = Vector2(0,0)
@@ -27,12 +28,15 @@ var posess_timeout = 1
 var posessable_enemy
 var after_posession_timeout = 0
 var killable = true
+var start_position
 
 var patrol_route = []
 var next_patrol_point_idx = 0
 var target 
 var patrol_movement = Vector2(0,0)
 var was_in_air = false
+var last_body
+
 
 func _ready():
 	add_to_group("Killable")
@@ -48,7 +52,8 @@ func _ready():
 	else:
 		target = patrol_route[0]
 		position = target
-			
+
+	start_position = position			
 	set_physics_process(true)
 
 func start_posessing():
@@ -204,6 +209,7 @@ func die():
 		game.add_child(cam)
 		cam.position = position
 		cam.shake(0.4, 50, 20)
+		game.restart()
 
 func posess_enemy():
 	dead = true
@@ -215,11 +221,18 @@ func posess_enemy():
 		posessable_enemy.remove_from_group("Posessable")
 		posessable_enemy.after_posession_timeout = 0.5
 		add_to_group("Posessable")
-		
+		posessable_enemy.last_body = self
+		game.current_player = posessable_enemy
+			
 		$Camera2D.tween_to_position(posessable_enemy.position - position)
 		posessable_enemy.controlled = true
 		controlled = false
 	
+func revive():
+	position = start_position
+	dead = false
+	anim.play("Idle")
+	$Blood.emitting = false
 
 func _on_PosessArea_body_entered(body):
 	if body.is_in_group("Posessable"):

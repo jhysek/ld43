@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/light.png" type="Texture" id=8]
 [ext_resource path="res://Assets/loop.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Components/Player/Bird.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=11]
 
 [sub_resource type="Environment" id=1]
 
@@ -90,6 +91,78 @@ adjustment_contrast = 1.1
 adjustment_saturation = 0.8
 _sections_unfolded = [ "Adjustments", "Background", "Glow" ]
 
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.0625, 0.0625, 0.0625, 0.872941 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color( 0.8, 0.8, 0.8, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 11 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.324219, 0, 0, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color( 0.8, 0.8, 0.8, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+
+[sub_resource type="DynamicFont" id=5]
+
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 11 )
+_sections_unfolded = [ "Font", "Settings" ]
+
 [node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
@@ -148,6 +221,7 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 
 [node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
+editor/display_folded = true
 controlled = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="9"]
@@ -215,6 +289,7 @@ playback/speed = 1.0
 "Posessable",
 ] instance=ExtResource( 6 )]
 
+editor/display_folded = true
 position = Vector2( 483.728, 159.025 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
 
@@ -245,6 +320,7 @@ environment = SubResource( 1 )
 "Posessable",
 ] instance=ExtResource( 10 )]
 
+editor/display_folded = true
 position = Vector2( 265.071, -173.116 )
 can_fly = true
 
@@ -260,6 +336,130 @@ position = Vector2( -418.788, -187.007 )
 
 position = Vector2( 215.871, -165.574 )
 
+[node name="UI" type="CanvasLayer" parent="." index="10"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Control" type="Control" parent="UI" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="PauseDialog" type="Panel" parent="UI/Control" index="0"]
+
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -147.0
+margin_top = -95.0
+margin_right = 146.0
+margin_bottom = 95.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/panel = SubResource( 2 )
+_sections_unfolded = [ "Visibility", "custom_styles" ]
+
+[node name="Label" type="Label" parent="UI/Control/PauseDialog" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 22.0
+margin_right = 292.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "GAME    PAUSED"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "Theme", "custom_fonts" ]
+
+[node name="Resume" type="Button" parent="UI/Control/PauseDialog" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 18.0
+margin_top = 78.0
+margin_right = 278.0
+margin_bottom = 118.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "RESUME"
+flat = true
+align = 1
+_sections_unfolded = [ "custom_fonts", "custom_styles" ]
+
+[node name="Quit" type="Button" parent="UI/Control/PauseDialog" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = 121.0
+margin_right = 276.0
+margin_bottom = 161.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "QUIT"
+flat = true
+align = 1
+_sections_unfolded = [ "custom_fonts", "custom_styles" ]
+
 [connection signal="tween_completed" from="Player/Camera2D/Tween" to="Player/Camera2D" method="_on_Tween_tween_completed"]
+
+[connection signal="pressed" from="UI/Control/PauseDialog/Resume" to="." method="_on_Resume_pressed"]
+
+[connection signal="pressed" from="UI/Control/PauseDialog/Quit" to="." method="_on_Quit_pressed"]
 
 
