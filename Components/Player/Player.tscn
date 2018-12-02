@@ -1010,6 +1010,7 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 31.5152 ]
 }
 GRAVITY = 2800
+ANTIGRAVITY = 1400
 SPEED = 30000
 JUMP_SPEED = -850
 FLY_FORCE = -800
@@ -1019,10 +1020,10 @@ controlled = false
 can_fly = false
 can_shoot = false
 should_die_after_posess = true
-boundary_left = -1000
-boundary_right = 1000
-boudnary_top = -1000
-boundary_bottom = 1000
+boundary_left = -2200
+boundary_right = 7000
+boundary_top = -1200
+boundary_bottom = 2000
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
@@ -1160,7 +1161,7 @@ collision_mask = 1
 [node name="Jump" type="AudioStreamPlayer" parent="Sfx" index="0"]
 
 stream = ExtResource( 9 )
-volume_db = -15.0
+volume_db = -25.0
 autoplay = false
 mix_target = 2
 bus = "Master"

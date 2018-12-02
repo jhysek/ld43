@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export var GRAVITY = 40 * 70 #40 * 60
+export var ANTIGRAVITY = 20 * 70
 export var SPEED   = 30000
 export var JUMP_SPEED  = -850
 export var FLY_FORCE   = -800
@@ -10,10 +11,10 @@ export var controlled = false
 export var can_fly = false
 export var can_shoot = false
 export var should_die_after_posess = true
-export var boundary_left = - 1000
-export var boundary_right = 1000
-export var boudnary_top = -1000
-export var boundary_bottom = 1000
+export var boundary_left = - 2200
+export var boundary_right = 7000
+export var boundary_top = -1200
+export var boundary_bottom = 2000
 
 onready var ray_left = $BottomRayLeft
 onready var ray_right = $BottomRayRight
@@ -104,6 +105,7 @@ func controlled_flying_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		motion.y = FLY_FORCE
 		anim.play("Flap")
+		$Hint.hide()
 		
 	if !posessing:
 		if Input.is_action_pressed('ui_right'):
@@ -118,6 +120,7 @@ func controlled_flying_process(delta):
 		
 		if Input.is_action_pressed('ui_down'):
 			start_posessing()
+
 	else:
 		motion.x = lerp(motion.x, 0, 4 * delta)
 		
@@ -172,6 +175,9 @@ func _physics_process(delta):
 		
 	motion.y += GRAVITY * delta
 	
+	if can_fly: 
+		motion.y -= ANTIGRAVITY * delta
+	
 	if controlled and not dead:
 		if after_posession_timeout > 0:
 			after_posession_timeout -= delta
@@ -198,6 +204,9 @@ func _physics_process(delta):
 		motion.x = lerp(motion.x, 0, 4 * delta)
 		
 	motion = move_and_slide(motion)
+				
+	position.x = clamp(position.x, boundary_left, boundary_right)
+	position.y = clamp(position.y, boundary_top, boundary_bottom)
 
 func die():
 	dead = true	
@@ -227,6 +236,8 @@ func posess_enemy():
 		add_to_group("Posessable")
 		posessable_enemy.last_body = self
 		game.current_player = posessable_enemy
+		if posessable_enemy.can_fly and posessable_enemy.has_node("Hint"):
+			posessable_enemy.get_node("Hint").show()
 			
 		$Camera2D.tween_to_position(posessable_enemy.position - position)
 		posessable_enemy.controlled = true

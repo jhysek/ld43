@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=2]
@@ -8,9 +8,8 @@
 [ext_resource path="res://Components/Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=7]
 [ext_resource path="res://Assets/light.png" type="Texture" id=8]
-[ext_resource path="res://Assets/loop.ogg" type="AudioStream" id=9]
-[ext_resource path="res://Components/Player/Bird.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=11]
+[ext_resource path="res://Components/Player/Bird.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=10]
 
 [sub_resource type="Environment" id=1]
 
@@ -124,7 +123,7 @@ anti_aliasing_size = 1
 size = 20
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 11 )
+font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="StyleBoxFlat" id=4]
@@ -160,7 +159,7 @@ anti_aliasing_size = 1
 size = 20
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 11 )
+font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Game" type="Node2D"]
@@ -222,6 +221,7 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 [node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
 editor/display_folded = true
+ANTIGRAVITY = 1400
 controlled = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="9"]
@@ -292,6 +292,7 @@ playback/speed = 1.0
 editor/display_folded = true
 position = Vector2( 483.728, 159.025 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
+ANTIGRAVITY = 1400
 
 [node name="Patrol" type="Node2D" parent="Enemy" index="10"]
 
@@ -303,25 +304,17 @@ position = Vector2( 191.33, -2.70749 )
 
 [node name="Checkpoints" type="Node2D" parent="." index="6"]
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="7"]
-
-stream = ExtResource( 9 )
-volume_db = 0.0
-autoplay = true
-mix_target = 0
-bus = "Master"
-_sections_unfolded = [ "Pause" ]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="8"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="7"]
 
 environment = SubResource( 1 )
 
-[node name="Bird" parent="." index="9" groups=[
+[node name="Bird" parent="." index="8" groups=[
 "Posessable",
-] instance=ExtResource( 10 )]
+] instance=ExtResource( 9 )]
 
 editor/display_folded = true
 position = Vector2( 265.071, -173.116 )
+ANTIGRAVITY = 1400
 can_fly = true
 
 [node name="Patrol" type="Node2D" parent="Bird" index="9"]
@@ -336,8 +329,9 @@ position = Vector2( -418.788, -187.007 )
 
 position = Vector2( 215.871, -165.574 )
 
-[node name="UI" type="CanvasLayer" parent="." index="10"]
+[node name="UI" type="CanvasLayer" parent="." index="9"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
