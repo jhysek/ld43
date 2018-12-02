@@ -998,7 +998,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Angular Velocity", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Resource", "Scale", "Spread", "Trail" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 33
@@ -1019,6 +1019,10 @@ controlled = false
 can_fly = false
 can_shoot = false
 should_die_after_posess = true
+boundary_left = -1000
+boundary_right = 1000
+boudnary_top = -1000
+boundary_bottom = 1000
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 

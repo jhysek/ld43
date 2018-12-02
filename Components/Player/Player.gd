@@ -10,6 +10,10 @@ export var controlled = false
 export var can_fly = false
 export var can_shoot = false
 export var should_die_after_posess = true
+export var boundary_left = - 1000
+export var boundary_right = 1000
+export var boudnary_top = -1000
+export var boundary_bottom = 1000
 
 onready var ray_left = $BottomRayLeft
 onready var ray_right = $BottomRayRight

@@ -46,5 +46,5 @@ ui_down=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"
 [rendering]
 
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.4375, 0.4375, 0.4375, 1 )
+environment/default_clear_color=Color( 0.140625, 0.135681, 0.135681, 1 )
 environment/default_environment="res://default_env.tres"
