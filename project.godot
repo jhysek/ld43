@@ -11,8 +11,12 @@ config_version=3
 [application]
 
 config/name="LD43"
-run/main_scene="res://Levels/Level01.tscn"
+run/main_scene="res://Scenes/Menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+LevelControler="*res://Scripts/LevelControler.gd"
 
 [input]
 

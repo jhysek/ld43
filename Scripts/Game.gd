@@ -10,3 +10,4 @@ func _ready():
 
 func finished():
 	print("Game finished")
+	LevelControler.switch_to_next_level()
