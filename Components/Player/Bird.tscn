@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Components/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bird/body.png" type="Texture" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/bird/wing_right.png" type="Texture" id=4]
 [ext_resource path="res://Components/Player/AnimationStartPossessing.tres" type="Animation" id=5]
 [ext_resource path="res://Components/Player/AnimmationStopPosessing.tres" type="Animation" id=6]
-[ext_resource path="res://Assets/circle.png" type="Texture" id=7]
+[ext_resource path="res://Components/PossessArea/PosessArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/particle.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=15]
@@ -270,17 +270,6 @@ tracks/7/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -37.641 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=8]
-
-custom_solver_bias = 0.0
-radius = 10.0
-
-[sub_resource type="CanvasItemMaterial" id=9]
-
-render_priority = 0
-blend_mode = 0
-light_mode = 0
-
 [sub_resource type="StyleBoxFlat" id=10]
 
 content_margin_left = -1.0
@@ -395,7 +384,7 @@ GRAVITY = 2800
 SPEED = 30000
 JUMP_SPEED = -850
 FLY_FORCE = -800
-FLY_SPEED = 10000
+FLY_SPEED = 100
 WALL_GRAVITY_THROTLING = 0.05
 controlled = false
 can_fly = false
@@ -410,6 +399,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Sprite" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Visual" type="Node2D" parent="Sprite" index="0"]
@@ -467,34 +457,7 @@ anims/StopPosessing = ExtResource( 6 )
 blend_times = [ "Jump", "Jump", 2.0 ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="PosessArea" type="Area2D" parent="." index="3"]
-
-modulate = Color( 1, 1, 1, 0 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-monitoring = false
-monitorable = false
-collision_layer = 32
-collision_mask = 32
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PosessArea" index="0"]
-
-shape = SubResource( 8 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="PosessArea" index="1"]
-
-modulate = Color( 0.222656, 0.222656, 0.222656, 0.541412 )
-material = SubResource( 9 )
-scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 7 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+[node name="PosessArea" parent="." index="3" instance=ExtResource( 7 )]
 
 [node name="ProgressBar" type="ProgressBar" parent="." index="4"]
 

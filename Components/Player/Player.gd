@@ -4,7 +4,7 @@ export var GRAVITY = 40 * 70 #40 * 60
 export var SPEED   = 30000
 export var JUMP_SPEED  = -850
 export var FLY_FORCE   = -800
-export var FLY_SPEED   = 10000
+export var FLY_SPEED   = 100
 export var WALL_GRAVITY_THROTLING = 0.05
 export var controlled = false
 export var can_fly = false
@@ -30,6 +30,8 @@ var killable = true
 
 var patrol_route = []
 var next_patrol_point_idx = 0
+var target 
+var patrol_movement = Vector2(0,0)
 
 func _ready():
 	add_to_group("Killable")
@@ -37,41 +39,56 @@ func _ready():
 	patrolling = has_node("Patrol")
 	if patrolling:
 		patrol_route = []
-		print("getting children")
 		for point in get_node("Patrol").get_children():
-			print(str(point.global_position))
-			#patrol_route.push_front(point.global_position)
-			#patrol_route.append(point.global_position)
-		print("GOT PATH: " + str(patrol_route))
+			patrol_route.push_front(point.global_position)
 		
 	if patrol_route.size() == 0:
 		patrolling = false
-		
+	else:
+		target = patrol_route[0]
+		position = target
+			
 	set_physics_process(true)
 
 func start_posessing():
 	posessing = true
 	$PosessArea.monitoring = true
+	$PosessArea.show()
 	posess_timeout = -1
 	progress.value = 0
 	progress.max_value = 2000
-	anim.play('StartPosessing')
-
+	$PosessArea/AnimationPlayer.play('Start')
 	
 func stop_posessing():
 	posessing = false
 	$PosessArea.monitoring = false
 	progress.hide()
-	anim.play('StopPosessing')
+	$PosessArea/AnimationPlayer.play('Stop')
+	
 
 func patrolling_process(delta):
 	motion = Vector2(0,0)
-	
-	if position.distance_to(patrol_route[next_patrol_point_idx]) < 10:
+		
+	if abs(target.x - position.x) < 20:
 		next_patrol_point_idx = (next_patrol_point_idx + 1) % patrol_route.size()
+		target = patrol_route[next_patrol_point_idx]
+		if target.x >= position.x:
+			patrol_movement = Vector2(FLY_SPEED, 0)
+			if can_fly:
+				anim.play("Fly")
+				$Sprite.scale = Vector2(-1, 1)
+			else:
+				anim.play("WalkRight")
+				
+		else:
+			patrol_movement = Vector2(-FLY_SPEED, 0)
+			if can_fly:
+				anim.play("Fly")
+				$Sprite.scale = Vector2(1, 1)
+			else:
+				anim.play("WalkLeft")
 	else:
-		position.x = lerp(position.x, patrol_route[next_patrol_point_idx].x, FLY_SPEED * delta)
-		position.y = lerp(position.y, patrol_route[next_patrol_point_idx].y, FLY_SPEED * delta)
+		motion = patrol_movement
 
 func controlled_flying_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):

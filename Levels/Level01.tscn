@@ -158,8 +158,7 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 [node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
 position = Vector2( -934.965, 130.142 )
-FLY_FORCE = -800
-FLY_SPEED = 10000
+FLY_SPEED = 100
 controlled = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="5"]
@@ -229,8 +228,7 @@ playback/speed = 1.0
 
 position = Vector2( 1524.15, -241.076 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
-FLY_FORCE = -800
-FLY_SPEED = 10000
+FLY_SPEED = 100
 
 [node name="Checkpoints" type="Node2D" parent="." index="6"]
 
@@ -253,9 +251,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 706.0
+margin_left = 646.0
 margin_top = -484.0
-margin_right = 1212.0
+margin_right = 1160.0
 margin_bottom = -399.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -265,7 +263,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.460938, 1, 0.962097, 1 )
-text = "hold  space  to  possess  a  body  in  reach"
+text = "hold  'DOWN'  to  possess  a  body  in  reach"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

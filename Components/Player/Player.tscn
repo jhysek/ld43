@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Components/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/player/head2.png" type="Texture" id=2]
@@ -7,10 +7,8 @@
 [ext_resource path="res://Assets/player/arm_right.png" type="Texture" id=5]
 [ext_resource path="res://Assets/player/leg_left.png" type="Texture" id=6]
 [ext_resource path="res://Assets/player/leg_right.png" type="Texture" id=7]
-[ext_resource path="res://Components/Player/AnimationStartPossessing.tres" type="Animation" id=8]
-[ext_resource path="res://Components/Player/AnimmationStopPosessing.tres" type="Animation" id=9]
-[ext_resource path="res://Assets/circle.png" type="Texture" id=10]
-[ext_resource path="res://Assets/particle.png" type="Texture" id=11]
+[ext_resource path="res://Components/PossessArea/PosessArea.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/particle.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=2]
 
@@ -851,17 +849,6 @@ tracks/13/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=8]
-
-custom_solver_bias = 0.0
-radius = 10.0
-
-[sub_resource type="CanvasItemMaterial" id=9]
-
-render_priority = 0
-blend_mode = 0
-light_mode = 0
-
 [sub_resource type="StyleBoxFlat" id=10]
 
 content_margin_left = -1.0
@@ -976,7 +963,7 @@ GRAVITY = 2800
 SPEED = 30000
 JUMP_SPEED = -850
 FLY_FORCE = -800
-FLY_SPEED = 10000
+FLY_SPEED = 100
 WALL_GRAVITY_THROTLING = 0.05
 controlled = false
 can_fly = false
@@ -986,7 +973,7 @@ should_die_after_posess = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -13.9707, 31.9211, 6.95807, 32.3967, 22.6546, -12.0769, 9.33633, -28.2491, -13.495, -28.2491, -25.862, -15.1686 )
+polygon = PoolVector2Array( -13.9707, 31.9211, 7.67734, 32.3431, 9.17981, 8.73288, 20.1689, -1.89775, 20.6959, -20.0806, 9.33633, -28.2491, -13.495, -28.2491, -23.0484, -20.6077, -23.0484, -4.79647, -14.2158, 7.23041 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Sprite" type="Node2D" parent="." index="1"]
@@ -1059,42 +1046,13 @@ playback_speed = 1.5
 anims/Die = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Jump = SubResource( 4 )
-anims/StartPosessing = ExtResource( 8 )
-anims/StopPosessing = ExtResource( 9 )
 anims/WalkLeft = SubResource( 12 )
 anims/WalkRight = SubResource( 7 )
 next/Jump = "Idle"
 blend_times = [ "Jump", "Jump", 2.0 ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="PosessArea" type="Area2D" parent="." index="3"]
-
-modulate = Color( 1, 1, 1, 0 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-monitoring = false
-monitorable = false
-collision_layer = 32
-collision_mask = 32
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PosessArea" index="0"]
-
-shape = SubResource( 8 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="PosessArea" index="1"]
-
-modulate = Color( 0.222656, 0.222656, 0.222656, 0.541412 )
-material = SubResource( 9 )
-scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 10 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+[node name="PosessArea" parent="." index="3" instance=ExtResource( 8 )]
 
 [node name="ProgressBar" type="ProgressBar" parent="." index="4"]
 
@@ -1127,7 +1085,7 @@ _sections_unfolded = [ "Percent", "Visibility", "custom_colors", "custom_styles"
 
 [node name="BottomRayRight" type="RayCast2D" parent="." index="5"]
 
-position = Vector2( 5.73986, 32.4208 )
+position = Vector2( 7.13164, 32.4208 )
 scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -1186,11 +1144,20 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 13 )
-texture = ExtResource( 11 )
+texture = ExtResource( 9 )
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+
+[node name="Tween" type="Tween" parent="." index="9"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [connection signal="body_entered" from="PosessArea" to="." method="_on_PosessArea_body_entered"]
 

@@ -2,12 +2,12 @@
 
 [resource]
 
-resource_name = "StartPosessing"
+resource_name = "Start"
 length = 1.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("PosessArea:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PosessArea/CollisionShape2D:shape:radius")
+tracks/1/path = NodePath("CollisionShape2D:shape:radius")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "values": [ 10.0, 493.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("PosessArea/Sprite:scale")
+tracks/2/path = NodePath("Sprite:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
