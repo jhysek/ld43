@@ -6,6 +6,7 @@ export var SPEED   = 30000
 export var JUMP_SPEED  = -850
 export var FLY_FORCE   = -800
 export var FLY_SPEED   = 100
+export var FIRE_COOLDOWN = 0.1
 export var WALL_GRAVITY_THROTLING = 0.05
 export var controlled = false
 export var can_fly = false
@@ -18,6 +19,7 @@ export var boundary_bottom = 2000
 
 onready var ray_left = $BottomRayLeft
 onready var ray_right = $BottomRayRight
+onready var ray_front = $Sprite/RayFront
 
 onready var anim = $AnimationPlayer
 onready var sprite = $Sprite
@@ -34,6 +36,7 @@ var posessable_enemy
 var after_posession_timeout = 0
 var killable = true
 var start_position
+var fire_cooldown = 0
 
 var patrol_route = []
 var next_patrol_point_idx = 0
@@ -43,7 +46,6 @@ var was_in_air = false
 var last_body
 
 var Bullet
-
 
 func _ready():
 	add_to_group("Killable")
@@ -60,6 +62,7 @@ func _ready():
 		position = target
 
 	if can_shoot:
+		ray_front.enabled = true
 		Bullet = preload("res://Components/Bullet/Bullet.tscn")
 
 	start_position = position
@@ -69,6 +72,8 @@ func start_posessing():
 	posessing = true
 	$PosessArea.monitoring = true
 	$PosessArea.show()
+	if !can_fly:
+	  anim.play("Idle")
 	posess_timeout = -1
 	progress.value = 0
 	progress.max_value = 2000
@@ -81,10 +86,12 @@ func stop_posessing():
 	$PosessArea/AnimationPlayer.play('Stop')
 	
 func fire():
+	$Sfx/Fire.play()
 	var bullet = Bullet.instance()
 	game.add_child(bullet)
+	bullet.from = self
 	bullet.direction = Vector2($Sprite.scale.x, 0)
-	bullet.position = $BulletStart.global_position
+	bullet.position = $Sprite/Visual/Body/Gun/BulletStart.global_position
 	anim.play("Fire")
 
 func patrolling_process(delta):
@@ -144,6 +151,7 @@ func controlled_process(delta):
 		$Sfx/Jump.play()
 	was_in_air = in_air
 	
+	
 	if !posessing:
 		if not in_air and Input.is_action_pressed("ui_up"):
 			in_air = true
@@ -164,13 +172,15 @@ func controlled_process(delta):
 			sprite.scale.x = -1
 			
 		elif !Input.is_action_pressed('ui_right'):
-			if !in_air and anim.current_animation != "Idle":
+			if !in_air and anim.current_animation != "Idle" and fire_cooldown <= 0:
 				anim.play("Idle")
 				
 			motion.x = 0
 	
-		if can_shoot and Input.is_action_just_pressed("ui_accept"):
+		if can_shoot and Input.is_action_just_pressed("ui_accept") and fire_cooldown <= 0:
 			fire()
+			motion.x = -500
+			fire_cooldown = FIRE_COOLDOWN
 			
 		if Input.is_action_pressed('ui_down'):
 			start_posessing()
@@ -191,6 +201,9 @@ func _physics_process(delta):
 	if can_fly: 
 		motion.y -= ANTIGRAVITY * delta
 	
+	if fire_cooldown > 0:
+		fire_cooldown -= delta
+		
 	if controlled and not dead:
 		if after_posession_timeout > 0:
 			after_posession_timeout -= delta
@@ -213,6 +226,14 @@ func _physics_process(delta):
 	elif !dead and patrolling:
 		patrolling_process(delta)
 		
+	if !dead and can_shoot:
+		if ray_front.is_colliding():
+			var collider = ray_front.get_collider()
+			if collider and collider.is_in_group('Killable') and fire_cooldown <= 0:
+				fire()
+				motion.x = -500
+				fire_cooldown = 0.2
+					
 	if dead:
 		motion.x = lerp(motion.x, 0, 4 * delta)
 		

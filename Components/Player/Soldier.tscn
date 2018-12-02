@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Components/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/soldier/head.png" type="Texture" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://Components/PossessArea/PosessArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/sfx/jump02.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/sfx/death02.wav" type="AudioStream" id=9]
-[ext_resource path="res://Assets/particle.png" type="Texture" id=10]
+[ext_resource path="res://Assets/sfx/fire.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/particle.png" type="Texture" id=11]
 
 [sub_resource type="Animation" id=1]
 
@@ -1023,6 +1024,7 @@ SPEED = 30000
 JUMP_SPEED = -850
 FLY_FORCE = -800
 FLY_SPEED = 100
+FIRE_COOLDOWN = 0.1
 WALL_GRAVITY_THROTLING = 0.05
 controlled = false
 can_fly = false
@@ -1062,14 +1064,14 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="LegLeft" type="Sprite" parent="Sprite/Visual/Body" index="0"]
 
-position = Vector2( -48.968, 45.1745 )
+position = Vector2( -50.5536, 92.6262 )
 texture = ExtResource( 4 )
 offset = Vector2( -11.2432, 45.0153 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="LegRight" type="Sprite" parent="Sprite/Visual/Body" index="1"]
 
-position = Vector2( 53.1683, 42.1352 )
+position = Vector2( 55.0986, 94.9086 )
 texture = ExtResource( 5 )
 offset = Vector2( -10.9904, 46.0458 )
 _sections_unfolded = [ "Transform" ]
@@ -1079,17 +1081,21 @@ _sections_unfolded = [ "Transform" ]
 ]]
 
 position = Vector2( -30.8429, -7.7107 )
-rotation = 0.320242
 texture = ExtResource( 6 )
 offset = Vector2( 115.537, 25.307 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="BulletStart" type="Position2D" parent="Sprite/Visual/Body/Gun" index="0"]
+
+position = Vector2( 269.99, 4.77411 )
+scale = Vector2( 6.66667, 6.66667 )
 
 [node name="RayFront" type="RayCast2D" parent="Sprite" index="1"]
 
 position = Vector2( 15.7191, -2.5349 )
 rotation = -3.14159
 scale = Vector2( -1, 1 )
-enabled = true
+enabled = false
 exclude_parent = true
 cast_to = Vector2( 800, 0 )
 collision_mask = 1
@@ -1101,7 +1107,7 @@ root_node = NodePath("..")
 autoplay = "Idle"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
-playback_speed = 3.0
+playback_speed = 1.5
 anims/Die = SubResource( 1 )
 anims/Fire = SubResource( 9 )
 anims/Idle = SubResource( 2 )
@@ -1187,6 +1193,16 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
+[node name="Fire" type="AudioStreamPlayer2D" parent="Sfx" index="3"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
 [node name="Blood" type="Particles2D" parent="." index="8"]
 
 position = Vector2( -1.74339, -15.4969 )
@@ -1204,7 +1220,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 8 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -1218,10 +1234,6 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
-
-[node name="BulletStart" type="Position2D" parent="." index="10"]
-
-position = Vector2( 35.3306, 4.67182 )
 
 [connection signal="body_entered" from="PosessArea" to="." method="_on_PosessArea_body_entered"]
 
