@@ -7,8 +7,10 @@
 [ext_resource path="res://Assets/player/arm_right.png" type="Texture" id=5]
 [ext_resource path="res://Assets/player/leg_left.png" type="Texture" id=6]
 [ext_resource path="res://Assets/player/leg_right.png" type="Texture" id=7]
-[ext_resource path="res://Assets/circle.png" type="Texture" id=8]
-[ext_resource path="res://Assets/particle.png" type="Texture" id=9]
+[ext_resource path="res://Components/Player/AnimationStartPossessing.tres" type="Animation" id=8]
+[ext_resource path="res://Components/Player/AnimmationStopPosessing.tres" type="Animation" id=9]
+[ext_resource path="res://Assets/circle.png" type="Texture" id=10]
+[ext_resource path="res://Assets/particle.png" type="Texture" id=11]
 
 [sub_resource type="Animation" id=2]
 
@@ -485,92 +487,6 @@ tracks/11/keys = {
 "transitions": PoolRealArray( 0.25 ),
 "update": 0,
 "values": [ 3.0 ]
-}
-
-[sub_resource type="Animation" id=5]
-
-resource_name = "StartPosessing"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("PosessArea:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 0.662453, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PosessArea/CollisionShape2D:shape:radius")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 0.25, 1 ),
-"update": 0,
-"values": [ 10.0, 493.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PosessArea/Sprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 0.25, 1 ),
-"update": 0,
-"values": [ Vector2( 0.02, 0.02 ), Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-
-resource_name = "StopPosessing"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("PosessArea:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 0.25, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PosessArea/CollisionShape2D:shape:radius")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 493.0, 10.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PosessArea/Sprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -1143,8 +1059,8 @@ playback_speed = 1.5
 anims/Die = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Jump = SubResource( 4 )
-anims/StartPosessing = SubResource( 5 )
-anims/StopPosessing = SubResource( 6 )
+anims/StartPosessing = ExtResource( 8 )
+anims/StopPosessing = ExtResource( 9 )
 anims/WalkLeft = SubResource( 12 )
 anims/WalkRight = SubResource( 7 )
 next/Jump = "Idle"
@@ -1177,7 +1093,7 @@ _sections_unfolded = [ "Transform" ]
 modulate = Color( 0.222656, 0.222656, 0.222656, 0.541412 )
 material = SubResource( 9 )
 scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 8 )
+texture = ExtResource( 10 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="ProgressBar" type="ProgressBar" parent="." index="4"]
@@ -1270,7 +1186,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 13 )
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 normal_map = null
 h_frames = 1
 v_frames = 1

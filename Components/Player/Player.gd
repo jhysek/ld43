@@ -34,12 +34,19 @@ var next_patrol_point_idx = 0
 func _ready():
 	add_to_group("Killable")
 	print("in ready")
-	if false and has_node("Patrolling"):
-		patrolling = true
+	patrolling = has_node("Patrol")
+	if patrolling:
+		patrol_route = []
 		print("getting children")
-		for point in $Patrolling.get_children():
-			patrol_route.append(point.global_position)
+		for point in get_node("Patrol").get_children():
+			print(str(point.global_position))
+			#patrol_route.push_front(point.global_position)
+			#patrol_route.append(point.global_position)
 		print("GOT PATH: " + str(patrol_route))
+		
+	if patrol_route.size() == 0:
+		patrolling = false
+		
 	set_physics_process(true)
 
 func start_posessing():
@@ -71,15 +78,25 @@ func controlled_flying_process(delta):
 		motion.y = FLY_FORCE
 		anim.play("Flap")
 		
-	if Input.is_action_pressed('ui_right'):
-		motion.x = min(motion.x + SPEED * delta, SPEED * delta)
-		sprite.scale.x = -1
+	if !posessing:
+		if Input.is_action_pressed('ui_right'):
+			motion.x = min(motion.x + SPEED * delta, SPEED * delta)
+			sprite.scale.x = -1
 		
-	if Input.is_action_pressed('ui_left'):
-		motion.x = max(motion.x - SPEED * delta, -SPEED * delta)
-		sprite.scale.x = 1
-	elif !Input.is_action_pressed('ui_right'):
+		if Input.is_action_pressed('ui_left'):
+			motion.x = max(motion.x - SPEED * delta, -SPEED * delta)
+			sprite.scale.x = 1
+		elif !Input.is_action_pressed('ui_right'):
+			motion.x = lerp(motion.x, 0, 4 * delta)
+		
+		if Input.is_action_pressed('ui_down'):
+			start_posessing()
+	else:
 		motion.x = lerp(motion.x, 0, 4 * delta)
+		
+		if !Input.is_action_pressed('ui_down'):
+			stop_posessing()
+			
 	
 func controlled_process(delta):
 	var in_air = !ray_left.is_colliding() and !ray_right.is_colliding()
@@ -110,13 +127,13 @@ func controlled_process(delta):
 				
 			motion.x = 0
 	
-		if Input.is_action_pressed('ui_accept'):
+		if Input.is_action_pressed('ui_down'):
 			start_posessing()
 		
 	else:
 		motion.x = 0
 		
-		if !Input.is_action_pressed('ui_accept'):
+		if !Input.is_action_pressed('ui_down'):
 			stop_posessing()	
 		
 		

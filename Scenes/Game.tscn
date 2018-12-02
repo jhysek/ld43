@@ -238,18 +238,17 @@ environment = SubResource( 1 )
 ] instance=ExtResource( 10 )]
 
 position = Vector2( 265.071, -106.168 )
-FLY_SPEED = 10000
 can_fly = true
 
-[node name="Patrolling" type="Node2D" parent="Bird" index="9"]
+[node name="Patrol" type="Node2D" parent="Bird" index="9"]
 
 position = Vector2( -265.071, 106.168 )
 
-[node name="Position2D" type="Position2D" parent="Bird/Patrolling" index="0"]
+[node name="Position2D" type="Position2D" parent="Bird/Patrol" index="0"]
 
 position = Vector2( -287.682, 44.5222 )
 
-[node name="Position2D2" type="Position2D" parent="Bird/Patrolling" index="1"]
+[node name="Position2D2" type="Position2D" parent="Bird/Patrol" index="1"]
 
 position = Vector2( 171.239, 54.7965 )
 

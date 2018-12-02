@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Components/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bird/body.png" type="Texture" id=2]
 [ext_resource path="res://Assets/bird/wing_left.png" type="Texture" id=3]
 [ext_resource path="res://Assets/bird/wing_right.png" type="Texture" id=4]
-[ext_resource path="res://Assets/circle.png" type="Texture" id=5]
-[ext_resource path="res://Assets/particle.png" type="Texture" id=6]
+[ext_resource path="res://Components/Player/AnimationStartPossessing.tres" type="Animation" id=5]
+[ext_resource path="res://Components/Player/AnimmationStopPosessing.tres" type="Animation" id=6]
+[ext_resource path="res://Assets/circle.png" type="Texture" id=7]
+[ext_resource path="res://Assets/particle.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=15]
 
@@ -460,12 +462,13 @@ playback_speed = 2.0
 anims/Die = SubResource( 15 )
 anims/Flap = SubResource( 13 )
 anims/Fly = SubResource( 14 )
+anims/StartPosessing = ExtResource( 5 )
+anims/StopPosessing = ExtResource( 6 )
 blend_times = [ "Jump", "Jump", 2.0 ]
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="PosessArea" type="Area2D" parent="." index="3"]
 
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -490,7 +493,7 @@ _sections_unfolded = [ "Transform" ]
 modulate = Color( 0.222656, 0.222656, 0.222656, 0.541412 )
 material = SubResource( 9 )
 scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="ProgressBar" type="ProgressBar" parent="." index="4"]
@@ -577,7 +580,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 12 )
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 normal_map = null
 h_frames = 1
 v_frames = 1
