@@ -42,10 +42,11 @@ var patrol_movement = Vector2(0,0)
 var was_in_air = false
 var last_body
 
+var Bullet
+
 
 func _ready():
 	add_to_group("Killable")
-	print("in ready")
 	patrolling = has_node("Patrol")
 	if patrolling:
 		patrol_route = []
@@ -58,7 +59,10 @@ func _ready():
 		target = patrol_route[0]
 		position = target
 
-	start_position = position			
+	if can_shoot:
+		Bullet = preload("res://Components/Bullet/Bullet.tscn")
+
+	start_position = position
 	set_physics_process(true)
 
 func start_posessing():
@@ -76,6 +80,12 @@ func stop_posessing():
 	progress.hide()
 	$PosessArea/AnimationPlayer.play('Stop')
 	
+func fire():
+	var bullet = Bullet.instance()
+	game.add_child(bullet)
+	bullet.direction = Vector2($Sprite.scale.x, 0)
+	bullet.position = $BulletStart.global_position
+	anim.play("Fire")
 
 func patrolling_process(delta):
 	motion = Vector2(0,0)
@@ -159,6 +169,9 @@ func controlled_process(delta):
 				
 			motion.x = 0
 	
+		if can_shoot and Input.is_action_just_pressed("ui_accept"):
+			fire()
+			
 		if Input.is_action_pressed('ui_down'):
 			start_posessing()
 		

@@ -379,7 +379,9 @@ use_filter = true
 font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Bird" type="KinematicBody2D"]
+[node name="Bird" type="KinematicBody2D" groups=[
+"Killable",
+]]
 
 input_pickable = false
 collision_layer = 33

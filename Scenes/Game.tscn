@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/light.png" type="Texture" id=8]
 [ext_resource path="res://Components/Player/Bird.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://Components/Player/Soldier.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Environment" id=1]
 
@@ -162,7 +163,7 @@ use_filter = true
 font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -221,8 +222,6 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 [node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
 editor/display_folded = true
-ANTIGRAVITY = 1400
-controlled = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="9"]
 
@@ -292,7 +291,6 @@ playback/speed = 1.0
 editor/display_folded = true
 position = Vector2( 483.728, 159.025 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
-ANTIGRAVITY = 1400
 
 [node name="Patrol" type="Node2D" parent="Enemy" index="10"]
 
@@ -314,7 +312,6 @@ environment = SubResource( 1 )
 
 editor/display_folded = true
 position = Vector2( 265.071, -173.116 )
-ANTIGRAVITY = 1400
 can_fly = true
 
 [node name="Patrol" type="Node2D" parent="Bird" index="9"]
@@ -449,6 +446,20 @@ text = "QUIT"
 flat = true
 align = 1
 _sections_unfolded = [ "custom_fonts", "custom_styles" ]
+
+[node name="RestartTimer" type="Timer" parent="." index="10"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Soldier" parent="." index="11" groups=[
+"Posessable",
+] instance=ExtResource( 11 )]
+
+position = Vector2( -194.446, 283.378 )
+controlled = true
 
 [connection signal="tween_completed" from="Player/Camera2D/Tween" to="Player/Camera2D" method="_on_Tween_tween_completed"]
 
