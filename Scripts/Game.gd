@@ -16,7 +16,8 @@ func _input(event):
 		else:
 			paused = true
 			#pause_dialog.show()
-
+	if Input.is_key_pressed(KEY_R):
+		LevelControler.start_level()
 
 func finished():
 	print("Game finished")

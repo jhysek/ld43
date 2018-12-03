@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/possessing.wav-1864472a61fcf1b335def0f1e16542cf.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/possessing.wav"
+source_md5="96f711acb953edd6d670aa581b52947a"
+
+dest_files=[ "res://.import/possessing.wav-1864472a61fcf1b335def0f1e16542cf.sample" ]
+dest_md5="80f179dbac8fe398cf509e4bed4ea00c"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

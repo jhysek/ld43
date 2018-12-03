@@ -16,6 +16,7 @@ export var boundary_left = - 2200
 export var boundary_right = 7000
 export var boundary_top = -1200
 export var boundary_bottom = 2000
+export var inverted = false
 
 onready var ray_left = $BottomRayLeft
 onready var ray_right = $BottomRayRight
@@ -49,6 +50,9 @@ var Bullet
 
 func _ready():
 	add_to_group("Killable")
+	if !controlled:
+		add_to_group("Posessable")
+		
 	patrolling = has_node("Patrol")
 	if patrolling:
 		patrol_route = []
@@ -65,6 +69,9 @@ func _ready():
 		ray_front.enabled = true
 		Bullet = preload("res://Components/Bullet/Bullet.tscn")
 
+	if inverted:
+		$Sprite.scale = Vector2(-1, 1)
+		
 	start_position = position
 	set_physics_process(true)
 
@@ -78,12 +85,16 @@ func start_posessing():
 	progress.value = 0
 	progress.max_value = 2000
 	$PosessArea/AnimationPlayer.play('Start')
+	$Sfx/Posessing.play()
+	if has_node("Camera2D"):
+	  $Camera2D.shake(1.9, 10, 10)
 	
 func stop_posessing():
 	posessing = false
 	$PosessArea.monitoring = false
 	progress.hide()
 	$PosessArea/AnimationPlayer.play('Stop')
+	$Sfx/Posessing.stop()
 	
 func fire():
 	$Sfx/Fire.play()
@@ -156,7 +167,6 @@ func controlled_process(delta):
 		if not in_air and Input.is_action_pressed("ui_up"):
 			in_air = true
 			anim.play("Jump")
-			#$Sfx/Jump.play()
 			motion.y = JUMP_SPEED
 	
 		if Input.is_action_pressed('ui_right'):
@@ -177,7 +187,7 @@ func controlled_process(delta):
 				
 			motion.x = 0
 	
-		if can_shoot and Input.is_action_just_pressed("ui_accept") and fire_cooldown <= 0:
+		if can_shoot and Input.is_action_pressed("ui_accept") and fire_cooldown <= 0:
 			fire()
 			motion.x = -500
 			fire_cooldown = FIRE_COOLDOWN
@@ -226,7 +236,7 @@ func _physics_process(delta):
 	elif !dead and patrolling:
 		patrolling_process(delta)
 		
-	if !dead and can_shoot:
+	if !dead and can_shoot and !controlled:
 		if ray_front.is_colliding():
 			var collider = ray_front.get_collider()
 			if collider and collider.is_in_group('Killable') and fire_cooldown <= 0:
@@ -284,7 +294,7 @@ func revive():
 	$Blood.emitting = false
 
 func _on_PosessArea_body_entered(body):
-	if body.is_in_group("Posessable"):
+	if body.is_in_group("Posessable") and !body.dead:
 		posessable_enemy = body
 		progress.show()
 		posess_timeout = 2

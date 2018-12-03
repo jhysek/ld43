@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/whispering.wav-44a02df55da6b6025f06646764673068.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/whispering.wav"
+source_md5="9b9ba75fcbdb5d6f608784d6c05f59c5"
+
+dest_files=[ "res://.import/whispering.wav-44a02df55da6b6025f06646764673068.sample" ]
+dest_md5="1afc7c582ef1ee116cce398742d17c9b"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

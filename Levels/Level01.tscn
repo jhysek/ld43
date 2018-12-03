@@ -20,7 +20,7 @@ use_filter = true
 font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -80,6 +80,7 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 
 position = Vector2( -934.965, 130.142 )
 controlled = true
+inverted = false
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="5"]
 
@@ -148,6 +149,7 @@ playback/speed = 1.0
 
 position = Vector2( 1524.15, -241.076 )
 _sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
+inverted = false
 
 [node name="Checkpoints" type="Node2D" parent="." index="6"]
 
@@ -207,7 +209,7 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 process_mode = 1
 wait_time = 1.0
-one_shot = false
+one_shot = true
 autostart = false
 
 [connection signal="tween_completed" from="Player/Camera2D/Tween" to="Player/Camera2D" method="_on_Tween_tween_completed"]

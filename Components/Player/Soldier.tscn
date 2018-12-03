@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Components/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/soldier/head.png" type="Texture" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://Components/PossessArea/PosessArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/sfx/jump02.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/sfx/death02.wav" type="AudioStream" id=9]
-[ext_resource path="res://Assets/sfx/fire.wav" type="AudioStream" id=10]
-[ext_resource path="res://Assets/particle.png" type="Texture" id=11]
+[ext_resource path="res://Assets/sfx/whispering.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/sfx/fire02.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/particle.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -1034,6 +1035,7 @@ boundary_left = -2200
 boundary_right = 7000
 boundary_top = -1200
 boundary_bottom = 2000
+inverted = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
@@ -1187,21 +1189,19 @@ bus = "echoed"
 
 [node name="Posessing" type="AudioStreamPlayer" parent="Sfx" index="2"]
 
-stream = null
-volume_db = 0.0
+stream = ExtResource( 10 )
+volume_db = -20.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="Fire" type="AudioStreamPlayer2D" parent="Sfx" index="3"]
+[node name="Fire" type="AudioStreamPlayer" parent="Sfx" index="3"]
 
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 volume_db = 0.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "Master"
-area_mask = 1
 
 [node name="Blood" type="Particles2D" parent="." index="8"]
 
@@ -1220,7 +1220,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 8 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 normal_map = null
 h_frames = 1
 v_frames = 1

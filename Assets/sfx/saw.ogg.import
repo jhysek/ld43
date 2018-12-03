@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/saw.ogg-d814db9be19f467df2b0d3614f0951f4.oggstr"
+
+[deps]
+
+source_file="res://Assets/sfx/saw.ogg"
+source_md5="d41033813c08759ded4b6113eebd4e35"
+
+dest_files=[ "res://.import/saw.ogg-d814db9be19f467df2b0d3614f0951f4.oggstr" ]
+dest_md5="a14265ee962961fd5f8b3cefea0f4761"
+
+[params]
+
+loop=true
+loop_offset=0

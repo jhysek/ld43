@@ -9,3 +9,6 @@ func _on_Button_pressed():
 	
 func _on_Button_mouse_entered():
 	$Click.play()
+
+func back_to_menu():
+	get_tree().change_scene("res://Scenes/Menu.tscn")

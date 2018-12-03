@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Components/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bird/body.png" type="Texture" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://Components/Player/AnimmationStopPosessing.tres" type="Animation" id=6]
 [ext_resource path="res://Components/PossessArea/PosessArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/sfx/death02.wav" type="AudioStream" id=8]
-[ext_resource path="res://Assets/particle.png" type="Texture" id=9]
-[ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://Assets/sfx/whispering.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/particle.png" type="Texture" id=10]
+[ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=11]
 
 [sub_resource type="Animation" id=1]
 
@@ -376,7 +377,7 @@ _sections_unfolded = [ "Angle", "Angular Velocity", "Animation", "Color", "Emiss
 size = 15
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 10 )
+font_data = ExtResource( 11 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Bird" type="KinematicBody2D" groups=[
@@ -408,6 +409,7 @@ boundary_left = -2200
 boundary_right = 7000
 boundary_top = -1200
 boundary_bottom = 2000
+inverted = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
@@ -538,8 +540,8 @@ bus = "echoed"
 
 [node name="Posessing" type="AudioStreamPlayer" parent="Sfx" index="1"]
 
-stream = null
-volume_db = 0.0
+stream = ExtResource( 9 )
+volume_db = -20.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -561,7 +563,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 6 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 normal_map = null
 h_frames = 1
 v_frames = 1

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fire02.wav-3b7ab832edb6ecc93f2b7a0989f7b0fe.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/fire02.wav"
+source_md5="6cb0d599008a3d5ba6b8cc9d7bec7d26"
+
+dest_files=[ "res://.import/fire02.wav-3b7ab832edb6ecc93f2b7a0989f7b0fe.sample" ]
+dest_md5="87bf4b7372c521ebdc0e7587166c6c0e"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

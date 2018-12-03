@@ -15,3 +15,6 @@ func switch_to_next_level():
 	if current_level < levels.size() - 1:
 		current_level += 1
 		start_level()
+	else:
+		Jukebox.stop()
+		get_tree().change_scene("res://Scenes/Finished.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=2]
@@ -8,9 +8,8 @@
 [ext_resource path="res://Components/BlinkingLabel/Label.gd" type="Script" id=6]
 [ext_resource path="res://Assets/light.png" type="Texture" id=7]
 [ext_resource path="res://Components/Player/Player.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Components/Player/Bird.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Assets/menu_loop.ogg" type="AudioStream" id=10]
-[ext_resource path="res://Assets/sfx/click.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/menu_loop.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Assets/sfx/click.wav" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -99,15 +98,7 @@ adjustment_contrast = 1.2
 adjustment_saturation = 0.8
 _sections_unfolded = [ "Adjustments", "Background", "Glow" ]
 
-[sub_resource type="DynamicFont" id=3]
-
-size = 18
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 5 )
-_sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -135,7 +126,7 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=4]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -163,7 +154,7 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=5]
 
 size = 30
 use_mipmaps = true
@@ -171,7 +162,7 @@ use_filter = true
 font_data = ExtResource( 5 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -250,7 +241,31 @@ max_lines_visible = -1
 script = ExtResource( 6 )
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="4"]
+[node name="Label2" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 946.0
+margin_top = 526.0
+margin_right = 1259.0
+margin_bottom = 579.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.0820313, 0.0820313, 0.0820313, 1 )
+text = "YEAH!  YOU   MADE   IT"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
 
 editor/display_folded = true
 position = Vector2( 781.456, 650.947 )
@@ -303,26 +318,9 @@ shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
 _sections_unfolded = [ "Shadow", "Transform" ]
 
-[node name="Player" parent="." index="5" instance=ExtResource( 8 )]
+[node name="Player" parent="." index="6" instance=ExtResource( 8 )]
 
-position = Vector2( 790.504, 848.407 )
-
-[node name="Bird" parent="." index="6" instance=ExtResource( 9 )]
-
-position = Vector2( 1243.2, 530.841 )
-can_fly = true
-
-[node name="Patrol" type="Node2D" parent="Bird" index="9"]
-
-_sections_unfolded = [ "Transform" ]
-
-[node name="Position2D2" type="Position2D" parent="Bird/Patrol" index="0"]
-
-position = Vector2( -456.313, -48.912 )
-
-[node name="Position2D" type="Position2D" parent="Bird/Patrol" index="1"]
-
-position = Vector2( 130.066, 5.06085 )
+position = Vector2( 991.853, 672.841 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="7"]
 
@@ -354,34 +352,7 @@ shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
 _sections_unfolded = [ "Shadow", "Transform" ]
 
-[node name="Label2" type="Label" parent="." index="9"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 837.0
-margin_top = 593.0
-margin_right = 1280.0
-margin_bottom = 680.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.136719, 0.136719, 0.136719, 1 )
-text = "Ludum  Dare  43  Compo  entry
-made   in   48   hours   from   scratch   by   
-Jiri   Hysek"
-align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors", "custom_fonts" ]
-
-[node name="Button" type="Button" parent="." index="10"]
+[node name="Button" type="Button" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -398,29 +369,29 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/hover = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "START GAME"
+text = "BACK  TO   MENU"
 flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts", "custom_styles" ]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="11"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="10"]
 
-stream = ExtResource( 10 )
+stream = ExtResource( 9 )
 volume_db = 0.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="Click" type="AudioStreamPlayer" parent="." index="12"]
+[node name="Click" type="AudioStreamPlayer" parent="." index="11"]
 
-stream = ExtResource( 11 )
+stream = ExtResource( 10 )
 volume_db = -10.0
 autoplay = false
 mix_target = 0
@@ -428,6 +399,6 @@ bus = "Master"
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button" to="." method="back_to_menu"]
 
 
