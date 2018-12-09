@@ -135,9 +135,9 @@ tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.317231, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -11.7042, 10.7289 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 1.43528, 8.68498 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("CollisionPolygon2D:rotation_degrees")
@@ -147,9 +147,9 @@ tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.457186, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -81.9341 ]
+"values": [ 0.0, -101.172 ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("Sprite/Visual/Body/Gun:rotation_degrees")
@@ -188,7 +188,7 @@ tracks/13/keys = {
 "values": [ Vector2( -3.61005, 41.8488 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=2]
 
 resource_name = "Fire"
 length = 1.0
@@ -303,9 +303,8 @@ tracks/8/keys = {
 "values": [ 0.0, -8.21122, 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource_name = "Idle"
 length = 2.0
 loop = true
 step = 0.1
@@ -478,9 +477,8 @@ tracks/13/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
-resource_name = "Jump"
 length = 2.0
 loop = false
 step = 0.1
@@ -617,9 +615,8 @@ tracks/10/keys = {
 "values": [ 0.0, 18.3485, -22.5565, -22.5565, 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource_name = "WalkLeft"
 length = 1.3
 loop = true
 step = 0.1
@@ -780,9 +777,8 @@ tracks/12/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
-resource_name = "WalkRight"
 length = 1.3
 loop = true
 step = 0.1
@@ -907,7 +903,7 @@ tracks/9/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=7]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -936,7 +932,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=8]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -965,7 +961,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Corner Radius" ]
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=9]
 
 resource_local_to_scene = true
 render_priority = 0
@@ -1020,7 +1016,7 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 31.5152 ]
 }
 GRAVITY = 2800
-ANTIGRAVITY = 1400
+ANTIGRAVITY = 1050
 SPEED = 30000
 JUMP_SPEED = -850
 FLY_FORCE = -800
@@ -1040,7 +1036,7 @@ inverted = false
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( 9.38387, -3.24611, 19.7369, -11.658, 21.0311, -33.9818, -2.58686, -44.0113, -23.6165, -34.6288, -22.9694, -12.6286, -10.6752, -3.89317, -13.2635, 32.019, 8.08974, 32.6661 )
+polygon = PoolVector2Array( 21.0311, -33.9818, -2.58686, -44.0113, -23.6165, -34.6288, -22.9694, -12.6286, -10.6752, -3.89317, -13.2635, 32.019, 8.08974, 32.6661 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Sprite" type="Node2D" parent="." index="1"]
@@ -1109,13 +1105,13 @@ root_node = NodePath("..")
 autoplay = "Idle"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
-playback_speed = 1.5
+playback_speed = 2.0
 anims/Die = SubResource( 1 )
-anims/Fire = SubResource( 9 )
-anims/Idle = SubResource( 2 )
-anims/Jump = SubResource( 3 )
-anims/WalkLeft = SubResource( 4 )
-anims/WalkRight = SubResource( 5 )
+anims/Fire = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Jump = SubResource( 4 )
+anims/WalkLeft = SubResource( 5 )
+anims/WalkRight = SubResource( 6 )
 next/Jump = "Idle"
 blend_times = [ "Jump", "Jump", 2.0 ]
 _sections_unfolded = [ "Playback Options" ]
@@ -1139,8 +1135,8 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-custom_styles/fg = SubResource( 6 )
-custom_styles/bg = SubResource( 7 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -1174,7 +1170,7 @@ collision_mask = 1
 [node name="Jump" type="AudioStreamPlayer" parent="Sfx" index="0"]
 
 stream = ExtResource( 8 )
-volume_db = -25.0
+volume_db = -20.0
 autoplay = false
 mix_target = 2
 bus = "Master"
@@ -1182,7 +1178,7 @@ bus = "Master"
 [node name="Die" type="AudioStreamPlayer" parent="Sfx" index="1"]
 
 stream = ExtResource( 9 )
-volume_db = 0.0
+volume_db = -10.0
 autoplay = false
 mix_target = 0
 bus = "echoed"
@@ -1190,7 +1186,7 @@ bus = "echoed"
 [node name="Posessing" type="AudioStreamPlayer" parent="Sfx" index="2"]
 
 stream = ExtResource( 10 )
-volume_db = -20.0
+volume_db = -10.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -1219,7 +1215,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 8 )
+process_material = SubResource( 9 )
 texture = ExtResource( 12 )
 normal_map = null
 h_frames = 1

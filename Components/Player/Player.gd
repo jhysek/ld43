@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
 export var GRAVITY = 40 * 70 #40 * 60
-export var ANTIGRAVITY = 20 * 70
+export var ANTIGRAVITY = 15 * 70
 export var SPEED   = 30000
-export var JUMP_SPEED  = -850
+export var JUMP_SPEED  = -900
 export var FLY_FORCE   = -800
 export var FLY_SPEED   = 100
 export var FIRE_COOLDOWN = 0.1
@@ -83,7 +83,7 @@ func start_posessing():
 	  anim.play("Idle")
 	posess_timeout = -1
 	progress.value = 0
-	progress.max_value = 2000
+	progress.max_value = 1000
 	$PosessArea/AnimationPlayer.play('Start')
 	$Sfx/Posessing.play()
 	if has_node("Camera2D"):
@@ -157,14 +157,14 @@ func controlled_flying_process(delta):
 			
 	
 func controlled_process(delta):
-	var in_air = !ray_left.is_colliding() and !ray_right.is_colliding()
+	var in_air =  !is_on_floor() #!ray_left.is_colliding() and !ray_right.is_colliding()
 	if was_in_air and !in_air:
 		$Sfx/Jump.play()
 	was_in_air = in_air
 	
 	
 	if !posessing:
-		if not in_air and Input.is_action_pressed("ui_up"):
+		if not in_air and Input.is_action_just_pressed("ui_up"):
 			in_air = true
 			anim.play("Jump")
 			motion.y = JUMP_SPEED
@@ -247,12 +247,12 @@ func _physics_process(delta):
 	if dead:
 		motion.x = lerp(motion.x, 0, 4 * delta)
 		
-	motion = move_and_slide(motion)
+	motion = move_and_slide(motion, Vector2(0, -1), 1, 4)
 				
 	position.x = clamp(position.x, boundary_left, boundary_right)
 	position.y = clamp(position.y, boundary_top, boundary_bottom)
 
-func die():
+func die(norestart = false):
 	dead = true	
 	remove_from_group("Posessable")
 	$Sfx/Die.play()
@@ -262,16 +262,18 @@ func die():
 	var cam = $Camera2D
 
 	if !posessable_enemy and cam:
-		remove_child(cam)
-		game.add_child(cam)
-		cam.position = position
-		cam.shake(0.4, 50, 20)
+	#	remove_child(cam)
+	#	game.add_child(cam)
+	#	cam.position = position
+	  cam.shake(0.4, 50, 20)
+	
+	if !norestart:
 		game.restart()
 
 func posess_enemy():
 	dead = true
 	stop_posessing()
-	die()
+	die(true)
 	$Camera2D.shake(1.0, 70, 20)
 	
 	if posessable_enemy:
@@ -297,7 +299,7 @@ func _on_PosessArea_body_entered(body):
 	if body.is_in_group("Posessable") and !body.dead:
 		posessable_enemy = body
 		progress.show()
-		posess_timeout = 2
+		posess_timeout = 1
 
 func camera_tweened():
 	var cam = $Camera2D

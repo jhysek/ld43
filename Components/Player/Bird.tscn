@@ -533,7 +533,7 @@ collision_mask = 1
 [node name="Die" type="AudioStreamPlayer" parent="Sfx" index="0"]
 
 stream = ExtResource( 8 )
-volume_db = 0.0
+volume_db = -10.0
 autoplay = false
 mix_target = 0
 bus = "echoed"
@@ -541,7 +541,7 @@ bus = "echoed"
 [node name="Posessing" type="AudioStreamPlayer" parent="Sfx" index="1"]
 
 stream = ExtResource( 9 )
-volume_db = -20.0
+volume_db = -10.0
 autoplay = false
 mix_target = 0
 bus = "Master"

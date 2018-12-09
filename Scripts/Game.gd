@@ -37,10 +37,12 @@ func _on_Resume_pressed():
 	#pause_dialog.hide()
 	
 func restart():
+	$RestartTimer.stop()
+	$RestartTimer.wait_time = 1
 	$RestartTimer.start()
 
 func _on_RestartTimer_timeout():
-	if current_player.last_body:
+	if current_player.start_position:
 		current_player.revive()
 		var cam = $Camera2D
 		if cam:

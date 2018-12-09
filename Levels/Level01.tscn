@@ -78,9 +78,8 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 
 [node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
-position = Vector2( -934.965, 130.142 )
+position = Vector2( -913.862, 148.23 )
 controlled = true
-inverted = false
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="5"]
 
@@ -109,7 +108,16 @@ editor_draw_drag_margin = false
 script = ExtResource( 7 )
 _sections_unfolded = [ "Smoothing", "Transform" ]
 
-[node name="Light2D" type="Light2D" parent="Player/Camera2D" index="0"]
+[node name="Tween" type="Tween" parent="Player/Camera2D" index="0"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="Light2D" type="Light2D" parent="Player/Camera2D" index="1"]
 
 enabled = true
 editor_only = false
@@ -126,7 +134,7 @@ range_layer_min = 0
 range_layer_max = 0
 range_item_cull_mask = 1
 shadow_enabled = true
-shadow_color = Color( 0, 0, 0, 1 )
+shadow_color = Color( 0, 0, 0, 0 )
 shadow_buffer_size = 2048
 shadow_gradient_length = 0.0
 shadow_filter = 0
@@ -134,22 +142,12 @@ shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
 _sections_unfolded = [ "Shadow" ]
 
-[node name="Tween" type="Tween" parent="Player/Camera2D" index="1"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
 [node name="Enemy" parent="." index="5" groups=[
 "Posessable",
 ] instance=ExtResource( 6 )]
 
 position = Vector2( 1524.15, -241.076 )
-_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
-inverted = false
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 
 [node name="Checkpoints" type="Node2D" parent="." index="6"]
 

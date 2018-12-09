@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Components/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/player/head2.png" type="Texture" id=2]
@@ -13,9 +13,13 @@
 [ext_resource path="res://Assets/sfx/whispering.wav" type="AudioStream" id=11]
 [ext_resource path="res://Assets/particle.png" type="Texture" id=12]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="RectangleShape2D" id=10]
 
-resource_name = "Die"
+custom_solver_bias = 0.0
+extents = Vector2( 11.0558, 31.4406 )
+
+[sub_resource type="Animation" id=11]
+
 length = 1.0
 loop = false
 step = 0.1
@@ -176,33 +180,56 @@ tracks/12/keys = {
 "values": [ 2.0 ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("CollisionPolygon2D:position")
+tracks/13/path = NodePath("CollisionShape2D:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.317231, 1 ),
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -11.7042, 10.7289 ) ]
+"values": [ Vector2( -2.62238, 0.699303 ), Vector2( -7.74343, 8.81771 ), Vector2( -9.00566, 12.1311 ) ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("CollisionPolygon2D:rotation_degrees")
+tracks/14/path = NodePath("CollisionShape2D:rotation_degrees")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.457186, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -81.9341 ]
+"values": [ 0.0, -90.0 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("CollisionShape2D:shape:extents")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 11.0558, 31.4406 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("CollisionShape2D:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2.03738, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=12]
 
-resource_name = "Idle"
 length = 2.0
 loop = true
 step = 0.1
@@ -363,7 +390,7 @@ tracks/12/keys = {
 "values": [ 0.0 ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("CollisionPolygon2D:rotation_degrees")
+tracks/13/path = NodePath("CollisionShape2D:shape:extents")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -372,10 +399,10 @@ tracks/13/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ Vector2( 11.0558, 31.4406 ) ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("CollisionPolygon2D:position")
+tracks/14/path = NodePath("CollisionShape2D:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -384,12 +411,47 @@ tracks/14/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( -2.62238, 0.699303 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Sprite:rotation_degrees")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("CollisionShape2D:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=13]
 
-resource_name = "Jump"
 length = 2.0
 loop = false
 step = 0.1
@@ -537,10 +599,21 @@ tracks/11/keys = {
 "update": 0,
 "values": [ 3.0 ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("CollisionShape2D:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=14]
 
-resource_name = "WalkLeft"
 length = 1.3
 loop = true
 step = 0.1
@@ -724,10 +797,81 @@ tracks/14/keys = {
 "update": 0,
 "values": [ Vector2( 15.7191, -2.5349 ) ]
 }
+tracks/15/type = "value"
+tracks/15/path = NodePath("CollisionShape2D:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2.62238, 0.699303 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("CollisionShape2D:shape:extents")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 11.0558, 31.4406 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Sprite:rotation_degrees")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Sprite/Visual:rotation_degrees")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("CollisionShape2D:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=15]
 
-resource_name = "WalkRight"
 length = 1.3
 loop = true
 step = 0.1
@@ -899,8 +1043,80 @@ tracks/13/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/14/type = "value"
+tracks/14/path = NodePath("CollisionShape2D:shape:extents")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 11.0558, 31.4406 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("CollisionShape2D:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2.62238, 0.699303 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Sprite:rotation_degrees")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Sprite/Visual:rotation_degrees")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("CollisionShape2D:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=16]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -929,7 +1145,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=17]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -958,7 +1174,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Corner Radius" ]
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=9]
 
 resource_local_to_scene = true
 render_priority = 0
@@ -1008,14 +1224,14 @@ collision_layer = 33
 collision_mask = 33
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform", "Visibility", "Z Index", "collision" ]
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 __meta__ = {
 "_edit_horizontal_guides_": [ 31.5152 ]
 }
 GRAVITY = 2800
-ANTIGRAVITY = 1400
+ANTIGRAVITY = 1050
 SPEED = 30000
-JUMP_SPEED = -850
+JUMP_SPEED = -900
 FLY_FORCE = -800
 FLY_SPEED = 100
 FIRE_COOLDOWN = 0.1
@@ -1030,11 +1246,11 @@ boundary_top = -1200
 boundary_bottom = 2000
 inverted = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-build_mode = 0
-polygon = PoolVector2Array( -13.9707, 31.9211, 7.67734, 32.3431, 9.17981, 8.73288, 20.1689, -1.89775, 20.6959, -20.0806, 9.33633, -28.2491, -13.495, -28.2491, -23.0484, -20.6077, -23.0484, -4.79647, -14.2158, 7.23041 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+position = Vector2( -2.62238, 0.699303 )
+shape = SubResource( 10 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Node2D" parent="." index="1"]
 
@@ -1060,6 +1276,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="ArmLeft" type="Sprite" parent="Sprite/Visual/Body" index="0"]
 
 position = Vector2( -56.9338, -9.13655 )
+rotation = 1.32644
 texture = ExtResource( 4 )
 offset = Vector2( -28.2455, 24.1682 )
 _sections_unfolded = [ "Transform" ]
@@ -1067,20 +1284,21 @@ _sections_unfolded = [ "Transform" ]
 [node name="ArmRight" type="Sprite" parent="Sprite/Visual/Body" index="1"]
 
 position = Vector2( 66.2895, -12.3463 )
+rotation = -1.27667
 texture = ExtResource( 5 )
 offset = Vector2( 32.2513, 24.0376 )
 _sections_unfolded = [ "Region", "Transform" ]
 
 [node name="LegLeft" type="Sprite" parent="Sprite/Visual/Body" index="2"]
 
-position = Vector2( -50.5536, 45.1746 )
+position = Vector2( -48.968, 45.1745 )
 texture = ExtResource( 6 )
 offset = Vector2( -11.2432, 45.0153 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="LegRight" type="Sprite" parent="Sprite/Visual/Body" index="3"]
 
-position = Vector2( 61.0958, 35.7931 )
+position = Vector2( 53.1683, 42.1352 )
 texture = ExtResource( 7 )
 offset = Vector2( -10.9904, 46.0458 )
 _sections_unfolded = [ "Transform" ]
@@ -1102,12 +1320,12 @@ root_node = NodePath("..")
 autoplay = "Idle"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
-playback_speed = 1.5
-anims/Die = SubResource( 1 )
-anims/Idle = SubResource( 2 )
-anims/Jump = SubResource( 3 )
-anims/WalkLeft = SubResource( 4 )
-anims/WalkRight = SubResource( 5 )
+playback_speed = 2.0
+anims/Die = SubResource( 11 )
+anims/Idle = SubResource( 12 )
+anims/Jump = SubResource( 13 )
+anims/WalkLeft = SubResource( 14 )
+anims/WalkRight = SubResource( 15 )
 next/Jump = "Idle"
 blend_times = [ "Jump", "Jump", 2.0 ]
 _sections_unfolded = [ "Playback Options" ]
@@ -1131,8 +1349,8 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-custom_styles/fg = SubResource( 6 )
-custom_styles/bg = SubResource( 7 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = SubResource( 17 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -1145,7 +1363,7 @@ _sections_unfolded = [ "Percent", "Visibility", "custom_colors", "custom_styles"
 
 [node name="BottomRayRight" type="RayCast2D" parent="." index="5"]
 
-position = Vector2( 7.13164, 32.4208 )
+position = Vector2( 4.51551, 32.3439 )
 scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -1154,7 +1372,7 @@ collision_mask = 1
 
 [node name="BottomRayLeft" type="RayCast2D" parent="." index="6"]
 
-position = Vector2( -12.15, 32.2153 )
+position = Vector2( -10.5342, 32.2922 )
 scale = Vector2( 1.5, 1.5 )
 enabled = true
 exclude_parent = true
@@ -1166,7 +1384,7 @@ collision_mask = 1
 [node name="Jump" type="AudioStreamPlayer" parent="Sfx" index="0"]
 
 stream = ExtResource( 9 )
-volume_db = -25.0
+volume_db = -20.0
 autoplay = false
 mix_target = 2
 bus = "Master"
@@ -1174,7 +1392,7 @@ bus = "Master"
 [node name="Die" type="AudioStreamPlayer" parent="Sfx" index="1"]
 
 stream = ExtResource( 10 )
-volume_db = 0.0
+volume_db = -10.0
 autoplay = false
 mix_target = 0
 bus = "echoed"
@@ -1182,7 +1400,7 @@ bus = "echoed"
 [node name="Posessing" type="AudioStreamPlayer" parent="Sfx" index="2"]
 
 stream = ExtResource( 11 )
-volume_db = -20.0
+volume_db = -10.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -1203,7 +1421,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 8 )
+process_material = SubResource( 9 )
 texture = ExtResource( 12 )
 normal_map = null
 h_frames = 1

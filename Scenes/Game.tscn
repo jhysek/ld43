@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/light.png" type="Texture" id=8]
 [ext_resource path="res://Components/Player/Bird.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/bebas.otf" type="DynamicFontData" id=10]
-[ext_resource path="res://Components/Player/Soldier.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Environment" id=1]
 
@@ -221,9 +220,8 @@ _sections_unfolded = [ "Cell", "Collision", "Occluder", "Transform" ]
 
 [node name="Player" parent="." index="4" instance=ExtResource( 6 )]
 
-editor/display_folded = true
 position = Vector2( 283.378, -31.6539 )
-FIRE_COOLDOWN = 0.1
+JUMP_SPEED = -900
 controlled = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="9"]
@@ -291,10 +289,9 @@ playback/speed = 1.0
 "Posessable",
 ] instance=ExtResource( 6 )]
 
-editor/display_folded = true
 position = Vector2( 483.728, 159.025 )
-_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility", "Z Index", "collision" ]
-FIRE_COOLDOWN = 0.1
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
+JUMP_SPEED = -900
 
 [node name="Patrol" type="Node2D" parent="Enemy" index="10"]
 
@@ -316,7 +313,7 @@ environment = SubResource( 1 )
 
 editor/display_folded = true
 position = Vector2( 265.071, -173.116 )
-FIRE_COOLDOWN = 0.1
+JUMP_SPEED = -900
 can_fly = true
 
 [node name="Patrol" type="Node2D" parent="Bird" index="9"]
@@ -458,21 +455,6 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
-
-[node name="Soldier" parent="." index="11" groups=[
-"Posessable",
-] instance=ExtResource( 11 )]
-
-position = Vector2( -194.446, 283.378 )
-FIRE_COOLDOWN = 0.1
-
-[node name="Patrol" type="Node2D" parent="Soldier" index="10"]
-
-[node name="Position2D" type="Position2D" parent="Soldier/Patrol" index="0"]
-
-[node name="Position2D2" type="Position2D" parent="Soldier/Patrol" index="1"]
-
-position = Vector2( 411.501, -6.02933 )
 
 [connection signal="tween_completed" from="Player/Camera2D/Tween" to="Player/Camera2D" method="_on_Tween_tween_completed"]
 

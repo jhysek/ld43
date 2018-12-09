@@ -14,7 +14,7 @@ func _physics_process(delta):
 func _on_Bullet_body_entered(body):
 	queue_free()
 	if body.is_in_group("Killable") and body != from and !body.dead:
-		body.die()
+		body.die(!body.controlled)
 
 func _on_Timer_timeout():
 	queue_free()
